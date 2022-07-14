@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="courseEntityTest" class="process.CourseEntityTest" />
+    <bean id="studentRegistrationEntityTest" class="process.StudentRegistrationEntityTest" />
+    <bean id="userTests" class="process.UserTests" />
+    <bean id="studentTests" class="process.StudentTests" />
+    <bean id="instructorTests" class="process.InstructorTests" />
+    <bean id="secretariatTests" class="process.SecretariatTests" />
+    <bean id="courseRepoTests" class="process.CourseRepositoryTest" />
+</beans>

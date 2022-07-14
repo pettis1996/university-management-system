@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassWeb Clone Home</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font Imports-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--CSS Style-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body th:href="@{redirect:/index/{am}/(am=${student.am})}">
+    
+    <nav class="navbar navbar-dark bg-dark" >
+        <!-- Navbar content -->
+            <a class="navbar-brand" href="#">ClassWeb Clone</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link"  th:href="@{redirect:/index/{am}/(am=${student.am})}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li th:each="student : ${students}" class="nav-item-active">
+                    <a class="nav-link"  th:href="@{/semesterStudentCourses/{am}/{semester}(semester=${student.semester},am=${student.am})}" method=get>
+                        My Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/Syllabus/{am}(am=${student.am})}">Syllabus</a>
+                </li>
+                <li class="nav-item" style="margin-top: 5rem;">
+                    <a class="nav-link" href="/loginpage">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="list-group" style="margin-left: 20%; margin-right: 20%; margin-top: 5%; justify-content: center;" >
+
+        <li th:each="student : ${students}" class="list-group-item d-flex justify-content-between align-items-center">
+            Student AM :
+            <h4><span class="badge badge-primary badge-light" th:text="${student.am}"></span></h4>
+        </li>
+        <li  th:each="student : ${students}"class="list-group-item d-flex justify-content-between align-items-center">
+            Student Name :
+            <h4><span class="badge badge-primary badge-light" th:text="${student.name}"></span></h4>
+        </li>
+        <li  th:each="student : ${students}"class="list-group-item d-flex justify-content-between align-items-center">
+            Courses Passed :
+            <h4><span class="badge badge-primary badge-light"  th:text="${student.coursePassed}"> </span></h4>
+        </li>
+        <li  th:each="student : ${students}" class="list-group-item d-flex justify-content-between align-items-center">
+            Current Semester :
+            <h4><span class="badge badge-primary badge-light"  th:text="${student.semester}"></span></h4>
+        </li>
+        <li  th:each="student : ${students}" class="list-group-item d-flex justify-content-between align-items-center">
+            Current Year
+            <h4><span class="badge badge-primary badge-light"th:text="${student.year}"></span></h4>
+        </li>
+    </ul>
+
+    <!--Bootstrap Javascript-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

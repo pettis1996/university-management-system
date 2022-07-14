@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classweb Clone - Student Registration</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font Imports-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--CSS Style-->
+    <link rel="stylesheet" href="./css/register_student_style.css">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="./icons/graduation-cap-white.png">
+    <!--FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-color: #020204;" th:href="@{/registrationStudent}">
+
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-dark sticky-top" style="background-color: #212529;">
+    <!-- Navbar content -->
+    <a class="navbar-brand" href="#" style="color: #F7F7F5;"><i class="fa fa-university" aria-hidden="true" style="color: #FCBB6D;"></i>  ClassWeb <span style="color: #FCBB6D;">Clone</span></a>
+</nav>
+<!-- NAVIGATION BAR END -->
+
+<!--REGISTRATION FORM-->
+<div class="card text-center" style="border-radius: 0 0 1rem 1rem; margin-left: 10rem; margin-right: 10rem; margin-top: 2rem; margin-bottom: 2rem; align-items: center; color: #F7F7F5
+    ; background-color: #212529;">
+    <div class="alert alert-warning" style="width: 100%;">
+        <h4>Warning!</h4>
+        <p>All fields with asterisk <b>( * )</b> are <b>required</b> fields for the registration. <br>
+            Please fill <b>ALL</b> the required fields to continue.</p>
+    </div>
+    <div th:if="${param.success}">
+        <div class="alert alert-dismissible alert-success">Student Registration Successful!</div>
+    </div>
+
+    <form th:action="@{/registerStudent}" method="post" th:object="${student}" style="text-align: center; width: 50%;">
+        <div th:each="error : ${errors}">
+            <div class="alert alert-dismissible alert-danger">
+                <td th:text="${error}"></td>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label for="AMInputText"><span style="color: red;">*</span>Student AM</label>
+            <input type="text" class="form-control" id="AMInputText" th:field="*{am}" aria-describedby="emailHelp" placeholder="Enter AM">
+        </div>
+        <div class="form-group">
+            <label for="nameInputText"><span style="color: red;">*</span>Full Name</label>
+            <input type="text" class="form-control" id="nameInputText" th:field="*{name}" aria-describedby="fullNameHelp" placeholder="Enter Full Name">
+        </div>
+        <div class="form-group">
+            <label for="userNameText"><span style="color: red;">*</span>Username</label>
+            <input type="text" class="form-control" id="userNameText" th:field="*{userName}" aria-describedby="userNameHelp" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1"><span style="color: red;">*</span>Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{passWord}" placeholder="Password">
+            <medium id="passwordHelp" class="form-text text-muted">1 Uppercase [A-Z], 1 Number [0-9], 1 Symbol</medium>
+        </div>
+        <div class="form-group">
+            <label for="emailInput"><span style="color: red;">*</span>Email</label>
+            <input type="email" class="form-control" id="emailInput" aria-describedby="emailInputHelp"  th:field="*{email}" placeholder="cs0XXXX@uoi.gr">
+            <medium id="passwordHelp" class="form-text text-muted">Replace XXXX with your AM number.</medium>
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label for="RegistrationDateInput"><span style="color: red;">*</span>Year of Studies</label>
+            <input type="text" class="form-control" id="RegistrationDateInput" aria-describedby="registrationDateHelp" th:field="*{year}" placeholder="Enter Registration Year">
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label for="RegistrationDateInput"><span style="color: red;">*</span>Semester</label>
+            <input type="text" class="form-control" id="RegistrationDateInput" aria-describedby="registrationDateHelp" th:field="*{semester}" placeholder="Enter Registration Year">
+        </div>
+        <div class="form-group" style="margin-top: 2rem;">
+            <label for="RegistrationDateInput"><span style="color: red;">*</span>Registration Date</label>
+            <input type="date" class="form-control" id="RegistrationDateInput" aria-describedby="registrationDateHelp" placeholder="Enter Registration Year">
+        </div>
+
+        <button class="btn btn-warning" type="submit" style="background-color: #FCBB6D;">
+            REGISTER
+        </button>
+		<br>
+        <br>
+        <a th:href="@{/loginpage}" style="color: #FCBB6D;">Already Registered? Login <b>here</b>!</a>
+        <br>
+        <br>
+
+    </form>
+</div>
+<!--REGISTRATION FORM END-->
+
+<!--Bootstrap Javascript-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

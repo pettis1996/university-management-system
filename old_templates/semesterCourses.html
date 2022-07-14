@@ -1,0 +1,42 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Title-->
+    <title>Simple Student Record</title>
+    <!-- CSS File-->
+    <link rel="stylesheet" href="style.css">
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="background-color: skyblue">
+<CENTER><h2>Simple Student Records</h2></CENTER>
+<!--Table-->
+<table>
+    <!--Row-1-->
+    <tr>
+        <!--Column-1-->
+        <td>
+
+            <table class="table table-stripped" id="stdlist" style="background-color: #C2976D;">
+                <!--Table Head-->
+                <thead>
+                <!--Row-2-->
+                <tr>
+                    <th>CourseName</th>
+                </tr>
+                </thead>
+
+                <!-- Edw mpenoun oi foitites -->
+                <tr th:each="course : ${names}">
+                    <td th:text="${course.courseName}">CourseName</td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>

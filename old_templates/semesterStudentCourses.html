@@ -1,0 +1,236 @@
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    &lt;!&ndash;Title&ndash;&gt;-->
+<!--    <title>Simple Student Record</title>-->
+<!--    &lt;!&ndash; CSS File&ndash;&gt;-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />-->
+<!--</head>-->
+<!--<body style="background-color: skyblue">-->
+<!--<CENTER><h2>All Courses</h2></CENTER>-->
+<!--&lt;!&ndash;Table&ndash;&gt;-->
+<!--<table>-->
+<!--    &lt;!&ndash;Row-1&ndash;&gt;-->
+<!--    <tr>-->
+<!--        &lt;!&ndash;Column-1&ndash;&gt;-->
+<!--        <td>-->
+<!--            &lt;!&ndash;Form&ndash;&gt;-->
+<!--            &lt;!&ndash;                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">&ndash;&gt;-->
+<!--            &lt;!&ndash;                 <h3>New Student Form</h3>&ndash;&gt;-->
+<!--            &lt;!&ndash;                  &lt;!&ndash;div-1&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label>AM</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Validation Error&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label class="validation-error hide" id="userNamevalidationError">This field is required</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Input User Name&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="text" name="userName" id="userName" placeholder="Enter Student Number">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    &lt;!&ndash;div-2&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label>Full Name</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Validation Error&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label class="validation-error hide" id="rollNovalidationError" >This field is required</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Input Roll No&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="text" name="rollNo" id="rollNo" placeholder="Enter Student's Full Name">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    &lt;!&ndash;div-3&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label>Year of Registration</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Validation Error&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label class="validation-error hide" id="stdClassvalidationError">This field is required</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                       &lt;!&ndash;Input Student Class&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="text" name="stdClass" id="stdClass" placeholder="Enter the year of student's registration">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    &lt;!&ndash;div-4&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label>Semester</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Validation Error&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label class="validation-error hide" id="tsubvalidationError">This field is required</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Input Total Subject&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="number" name="tsub" id="tsub" placeholder="Enter student's current semester">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    &lt;!&ndash;div-5&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label>Year of Studies</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Validation Error&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <label class="validation-error hide" id="agevalidationError">This field is required</label>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Input Age&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="number" name="age" id="age" placeholder="Enter Student's Year of Studies">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    &lt;!&ndash;div-6&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div class="form-action-buttons">&ndash;&gt;-->
+<!--            &lt;!&ndash;                        &lt;!&ndash;Input Button&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <input type="submit" value="Submit">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </form>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </td>&ndash;&gt;-->
+<!--            &lt;!&ndash;            &lt;!&ndash;Column-2&ndash;&gt;&ndash;&gt;-->
+<!--            &lt;!&ndash;            <td>&ndash;&gt;-->
+<!--            &lt;!&ndash;                &lt;!&ndash;Nested Table&ndash;&gt;&ndash;&gt;-->
+<!--            <table class="table table-stripped" id="stdlist" style="background-color: #C2976D;">-->
+<!--                &lt;!&ndash;Table Head&ndash;&gt;-->
+<!--                <thead>-->
+<!--                &lt;!&ndash;Row-2&ndash;&gt;-->
+<!--                <tr>-->
+<!--                    <th>CourseID</th>-->
+
+<!--                    <th>CourseName</th>-->
+<!--                    <th>Syllabus</th>-->
+<!--                    <th>Year</th>-->
+<!--                    <th>Semester</th>-->
+<!--                    <th>Instructor</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+
+<!--                &lt;!&ndash; Edw mpenoun oi foitites &ndash;&gt;-->
+<!--                <tr th:each="course : ${names}">-->
+<!--                    <td th:text="${course.courseId}">ID</td>-->
+<!--                    <td th:text="${course.courseName}">Name</td>-->
+<!--                    <td th:text="${course.syllabus}">Syllabus</td>-->
+<!--                    <td th:text="${course.year}">Year</td>-->
+<!--                    <td th:text="${course.semester}">Semester</td>-->
+<!--                    <td th:text="${course.instructorLogin}">Instructor</td>-->
+
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+<!--<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classweb Clone - My Courses</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font Imports-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--CSS Style-->
+    <link rel="stylesheet" href="./css/mycourses_style.css">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="./icons/graduation-cap-white.png">
+    <!--FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-color: #020204;">
+
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-dark sticky-top" style="background-color: #212529;">
+    <!-- Navbar content -->
+    <a class="navbar-brand" href="#" style="color: #F7F7F5;"><i class="fa fa-university" aria-hidden="true" style="color: #FCBB6D;"></i>  ClassWeb <span style="color: #FCBB6D;">Clone</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/index/{am}(am=${student.am})}"><i class="fa fa-home" aria-hidden="true"></i> Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="./mycourses_courses_student.html" style="color: #FCBB6D;"><i class="fa fa-book" aria-hidden="true"></i> My Courses <span style="font-weight: lighter; color: grey;">/Courses</span></a>
+            </li>
+
+            <li class="nav-item" style="margin-top: 5rem;">
+                <a class="nav-link" href="/loginpage"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- NAVIGATION BAR END -->
+
+<div class="row">
+    <div class="col-sm-6 sticky-left">
+        <div class="card" style="width: 20rem; height: 100%; background-color: #212529; margin-left: -1.5rem;">
+            <div class="card-body">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark mw-100">
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" aria-current="page" style="color: #F7F7F5; background-color: #FCBB6D;">
+                                <i class="fa fa-terminal" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                                My Courses
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/showCoursesFromSyllabus/{am}(am=${student.am})}" class="nav-link text-white" target="_blank">
+                                <i class="fa fa-plus-square" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                                Course Registration
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8" style="height: 100%; margin-left: -20rem; background-color: #020204;">
+        <div class="card" style="background-color: #020204; margin-top: 0.02rem; margin-left: -1.5rem; width: 59rem;">
+            <div class="card-body" style="background-color: #020204; color: #F7F7F5;">
+                <h3 style="margin-bottom: 1.5rem;">Current Semester Courses</h3>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr >
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>ECTS Marks</th>
+                        <th>INFO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="current : ${currentSemester}">
+
+                        <td th:text="${current.courseId}"></td>
+                        <td th:text="${current.courseName}"></td>
+                        <td th:text="${current.ects}"></td>
+                        <td><a th:href="@{/courseDescription/{courseId}(courseId=${current.courseId})}" style="text-decoration: none; color: #FCBB6D;" target="_blank">Description</a></td>
+                    </tr>
+                    <tr>
+
+                    </tbody>
+                </table>
+
+
+                <h3 style="margin-bottom: 1.5rem;">Passed Courses</h3>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>ECTS Marks</th>
+                        <th>INFO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p : ${passed}">
+
+                        <td th:text="${p.courseId}"></td>
+                        <td th:text="${p.courseName}"></td>
+                        <td th:text="${p.ects}"></td>
+                        <td><a th:href="@{/courseDescription/{courseId}(courseId=${p.courseId})}" style="text-decoration: none; color: #FCBB6D;">Description</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Bootstrap Javascript-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

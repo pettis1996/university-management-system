@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classweb Clone - My Courses</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font Imports-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--CSS Style-->
+    <link rel="stylesheet" href="./css/mycourses_style.css">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="./icons/graduation-cap-white.png">
+    <!--FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-color: #020204;">
+    
+    <!-- NAVIGATION BAR -->
+    <nav
+      class="navbar navbar-dark navbar-expand-lg sticky-top"
+      style="background-color: #212529"
+    >
+      <!-- Navbar content -->
+      <a class="navbar-brand" href="#" style="color: #f7f7f5"
+        ><i
+          class="fa fa-university"
+          aria-hidden="true"
+          style="color: #fcbb6d"
+        ></i>
+        ClassWeb <span style="color: #fcbb6d">Clone</span></a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav" style="text-align: center; height: 3.5rem;">
+        <ul th:each="student : ${students}" class="navbar-nav">
+          <li class="nav-item" style="margin-top: 1.5rem;">
+            <a class="nav-link" th:href="@{redirect:/index/{am}/(am=${student.am})}"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+          </li>
+          <li class="nav-item active">
+            <a
+              class="nav-link"
+              th:href="@{/semesterStudentCourses/{am}/{semester}(semester=${student.semester},am=${student.am})}"
+              style="color: #fcbb6d"
+              ><i class="fa fa-book" aria-hidden="true"></i> My Courses<span
+              style="font-weight: lighter; color: grey;"><br />
+              | <br />
+              Register Course</span
+            ></a>
+          </li>
+          <li class="nav-item" style="margin-top: 1.5rem;">
+            <a class="nav-link" th:href="@{/Syllabus/{am}(am=${student.am})}"><i class="fa fa-paperclip" aria-hidden="true"></i> Syllabus</a>
+          </li>
+          <li class="nav-item" style="margin-top: 1.5rem;">
+            <a class="nav-link disabled" href="#"
+              ><i class="fa fa-users" aria-hidden="true"></i> Users</a>
+          </li>
+          <li class="nav-item" style="margin-top: 1.5rem; margin-left: 35rem;">
+            <a class="nav-link" th:href="@{/loginpage}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- NAVIGATION BAR END -->
+
+    <div class="row">
+        <div class="col-sm-6 sticky-left">
+          <div class="card" style="width: 20rem; height: 100%; background-color: #212529; margin-left: -1.5rem;">
+            <div class="card-body">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark mw-100">
+                    <hr>
+                    <ul th:each="student : ${students}" class="nav nav-pills flex-column mb-auto">
+                      <li class="nav-item">
+                        <a th:href="@{/semesterStudentCourses/{am}/{semester}(semester=${student.semester},am=${student.am})}" class="nav-link text-white" aria-current="page">
+                            <i class="fa fa-terminal" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                            My Courses
+                        </a>
+                      </li>
+                      <li>
+                        <a th:href="@{/showCoursesFromSyllabus/{am}(am=${student.am})}" class="nav-link active" style="color: #F7F7F5; background-color: #FCBB6D;">
+                            <i class="fa fa-plus-square" aria-hidden="true" style="margin-right: 0.2rem;"></i>    
+                            Course Registration
+                        </a>
+                      </li>
+                      <li>
+                        <a th:href="@{/deleteRegistrationpage/{am}(am=${student.am})}" class="nav-link" style="color: #F7F7F5;">
+                            <i class="fa fa-minus-square" aria-hidden="true" style="margin-right: 0.2rem;"></i>    
+                            Delete Course
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="nav-link disabled">
+                            <i class="fa fa-line-chart" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                            Statistics
+                        </a>
+                      </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" style="height: 100%; margin-left: -20rem; background-color: #020204;">
+          <div class="card" style="background-color: #020204; margin-top: 0.3rem; margin-left: -1.5rem; width: 59.5rem;">
+            <div class="alert alert-dismissible alert-warning">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <h4>Instructions</h4>
+              <p>
+                1. Click on "Register a Course" button. <br>
+                2. Enter the Course ID of the course you would like to register to your courses. <br>
+                3. Click on "Add" button. <br>
+              </p>
+            </div>
+
+              <div th:if="${param.success}">
+                  <div class="alert alert-dismissible alert-success">You've successfully added the course!</div>
+              </div>
+              <div th:each="error : ${errors}">
+                  <div class="alert alert-alert">
+                      <td th:text="${error}"></td>
+                  </div>
+              </div>
+              </div>
+        </div>
+            <div class="container">
+              <div class="row" style="margin-left: 20rem; margin-right: 15rem; margin-top: 2.5rem; margin-bottom: 2.5rem; align-items: center;">
+                  <div class="col-sm">
+                  <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#regularModal" style="width: 15rem; background-color: #FCBB6D;">
+                    Register a Course
+                  </button>
+                      <!-- success message -->
+                  <div class="modal fade" id="regularModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <form th:action="@{/addRegistration/{am}(am=${registration.am})}" method="post" th:object="${registration}">
+                        	<div class="modal-dialog" role="document">
+                          	<div class="modal-content" style="background-color: #212529; color: #F7F7F5;">
+                          	<div class="modal-header">
+                            	<h4 class="modal-title" id="myModalLabel"><span style="color: #FCBB6D;">Register </span> to a course</h4>
+                         	</div>
+                        <div class="modal-body">
+                        	<label for="validationCustom00">Student AM - Auto</label>
+                        	<input type="text" class="form-control" id="validationCustom010"  th:field="*{regAm}" placeholder="MYY-XXX" value="" required disabled>
+                        	<br>
+                        	
+                            <label for="validationCustom01">Registration ID</label>
+                            <input type="text" class="form-control" id="validationCustom01"  th:field="*{regId}" placeholder="MYY-XXX" value="" required>
+                                
+                            <label for="validationCustom010">Course ID</label>
+                            <input type="text" class="form-control" id="validationCustom02"  th:field="*{courseId}" placeholder="MYY-XXX" value="" required>
+                        
+                            <label for="validationCustom03">Student Name</label>
+                            <input type="text" class="form-control" id="validationCustom03"  th:field="*{studentName}" placeholder="MYY-XXX" value="" required>
+                       
+                       
+                            <label for="validationCustom04">Email</label>
+                            <input type="text" class="form-control" id="validationCustom04" th:field="*{email}" placeholder="MYY-XXX" value="" required>
+                       
+                            <label for="validationCustom05">YearOfStudies</label>
+                            <input type="text" class="form-control" id="validationCustom05" th:field="*{yearOfStudies}" placeholder="MYY-XXX" value="" required>
+                        
+                            <label for="validationCustom06">Semester</label>
+                            <input type="text" class="form-control" id="validationCustom06" th:field="*{semester}" placeholder="MYY-XXX" value="" required>
+                        	
+                        </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-warning" style="background-color: #FCBB6D;">Add</button>
+                         </div>
+                                    </div>
+                          </div>
+                        </form>
+                  </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" style="background-color: #020204; color: #F7F7F5;">
+                <h3 style="margin-bottom: 1.5rem;">Available Courses from Current Syllabus</h3>
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>ECTS Marks</th>
+                        <th>Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="av : ${available}">
+                        <th th:text="${av.courseId}" scope="row" style="background-color: #FCBB6D;"></th>
+                        <td th:text="${av.courseName}"></td>
+                        <td th:text="${av.ects}"></td>
+                        <td><a th:href="@{/courseDescription/{courseId}(courseId=${av.courseId})}" style="text-decoration: none; color: #FCBB6D;">Description</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--Bootstrap Javascript-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

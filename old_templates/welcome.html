@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns :th="https://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Title-->
+    <title>Simple Student Record</title>
+    <!-- CSS File-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: skyblue">
+<CENTER><h2>Simple Student Records</h2></CENTER>
+<!--Table-->
+<table>
+    <!--Row-1-->
+    <tr>
+        <!--Column-1-->
+        <td>
+            <!--Form-->
+            <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                <h3>New Student Form</h3>
+                <!--div-1-->
+                <div>
+                    <label>AM</label>
+                    <!--Validation Error-->
+                    <label class="validation-error hide" id="userNamevalidationError">This field is required</label>
+                    <!--Input User Name-->
+                    <input type="text" name="userName" id="userName" placeholder="Enter Student Number">
+                </div>
+                <!--div-2-->
+                <div>
+                    <label>Full Name</label>
+                    <!--Validation Error-->
+                    <label class="validation-error hide" id="rollNovalidationError" >This field is required</label>
+                    <!--Input Roll No-->
+                    <input type="text" name="rollNo" id="rollNo" placeholder="Enter Student's Full Name">
+                </div>
+                <!--div-3-->
+                <div>
+                    <label>Year of Registration</label>
+                    <!--Validation Error-->
+                    <label class="validation-error hide" id="stdClassvalidationError">This field is required</label>
+                    <!--Input Student Class-->
+                    <input type="text" name="stdClass" id="stdClass" placeholder="Enter the year of student's registration">
+                </div>
+                <!--div-4-->
+                <div>
+                    <label>Semester</label>
+                    <!--Validation Error-->
+                    <label class="validation-error hide" id="tsubvalidationError">This field is required</label>
+                    <!--Input Total Subject-->
+                    <input type="number" name="tsub" id="tsub" placeholder="Enter student's current semester">
+                </div>
+                <!--div-5-->
+                <div>
+                    <label>Year of Studies</label>
+                    <!--Validation Error-->
+                    <label class="validation-error hide" id="agevalidationError">This field is required</label>
+                    <!--Input Age-->
+                    <input type="number" name="age" id="age" placeholder="Enter Student's Year of Studies">
+                </div>
+                <!--div-6-->
+                <div class="form-action-buttons">
+                    <!--Input Button-->
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </td>
+        <!--Column-2-->
+        <td>
+            <!--Nested Table-->
+            <table class="list" id="stdlist" style="background-color: #C2976D;">
+                <!--Table Head-->
+                <thead>
+                <!--Row-2-->
+                <tr>
+                    <th>AM</th>
+                    <th>Full Name</th>
+                    <th>Year Of Registration</th>
+                    <th>Semester</th>
+                    <th>Year of Studies</th>
+                </tr>
+                </thead>
+                <!--Table Body-->
+                <tbody>
+                <!-- Edw mpenoun oi foitites -->
+                <th:block th:each= "registration : ${listRegistrations}">
+                    <tr>
+                        <td>[[${registration.registrationId}]]</td>
+                    </tr>
+                </th:block>
+
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

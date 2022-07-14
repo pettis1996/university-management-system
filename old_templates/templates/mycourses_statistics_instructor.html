@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classweb Clone - My Courses</title>
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font Imports-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!--CSS Style-->
+    <link rel="stylesheet" href="./css/mycourses_style.css">
+    <!--FAVICON-->
+    <link rel="icon" type="image/png" href="./icons/graduation-cap-white.png">
+    <!--FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-color: #020204;">
+    
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-dark sticky-top" style="background-color: #212529;">
+        <!-- Navbar content -->
+        <a class="navbar-brand" href="#" style="color: #F7F7F5;"><i class="fa fa-university" aria-hidden="true" style="color: #FCBB6D;"></i>  ClassWeb <span style="color: #FCBB6D;">Clone</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div  th:each="instructor : ${instructors}" class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/homepageInstructor/{userName}(userName=${instructor.userName})}"><i class="fa fa-home" aria-hidden="true"></i> Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"th:href="@{/instructorCourses/{userName}(userName=${instructor.userName})}" method=get style="color: #FCBB6D;"><i class="fa fa-book" aria-hidden="true"></i> My Courses <span style="font-weight: lighter; color: grey;">/Statistics</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/SyllabusInstructor/{userName}(userName=${instructor.userName})}"><i class="fa fa-paperclip" aria-hidden="true"></i> Syllabus</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link disabled" href="#"><i class="fa fa-users" aria-hidden="true"></i> Users</a>
+                </li>
+                <li class="nav-item" style="margin-top: 5rem;">
+                    <a class="nav-link" th:href="@{/loginpage}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAVIGATION BAR END -->
+
+    <div class="row">
+        <div class="col-sm-6 sticky-left">
+          <div class="card" style="width: 20rem; height: 100%; background-color: #212529; margin-left: -1.5rem;">
+            <div class="card-body">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark mw-100">
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                      <li class="nav-item">
+                        <a th:href="@{/instructorCourses/{userName}(userName=${instructor.userName})}" class="nav-link text-white">
+                            <i class="fa fa-terminal" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                            My Teaching Courses
+                        </a>
+                      </li>
+                      <li>
+                        <a  th:href="@{/instructorAddCourse/{userName}(userName=${instructor.userName})}" class="nav-link text-white">
+                            <i class="fa fa-plus-square" aria-hidden="true" style="margin-right: 0.2rem;"></i>    
+                            Course Registration
+                        </a>
+                      </li>
+                      <li>
+                        <a  th:href="@{/instructordeleteCourse/{userName}(userName=${instructor.userName})}" class="nav-link" style="color: #F7F7F5;">
+                            <i class="fa fa-minus-square" aria-hidden="true" style="margin-right: 0.2rem;"></i>    
+                            Delete Course
+                        </a>
+                      </li>
+                      <li>
+                        <a th:href="@{/statisticsPage/{userName}(userName=${instructor.userName})}" class="nav-link text-white active" aria-current="page" style="color: #F7F7F5; background-color: #FCBB6D;">
+                            <i class="fa fa-line-chart" aria-hidden="true" style="margin-right: 0.2rem;"></i>
+                            Statistics
+                        </a>
+                      </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8" style="height: 100%; margin-left: -20rem; background-color: #020204;">
+          <div class="card" style="background-color: #020204; margin-top: 0.02rem; margin-left: -1.5rem; width: 55rem;">
+            <div class="card-body" style="background-color: #020204; color: #F7F7F5;">
+
+              <form style="text-align: center; width: 50%;" th:action="@{/computeOverall/{userName}/AverageGrade/{courseId}(userName=${instructor.userName},courseId=${instructor.courseId})}" method="post" th:object="${instructor}" >
+                  <div th:if="${param.success}">
+                      <div class="alert alert-dismissible alert-success">You've successfully registered!</div>
+                  </div>
+                  <form style="text-align: center; width: 50%;" th:action="@{/saveInstructor}" method="post" th:object="${instructor}">
+                      <div th:each="error : ${errors}">
+                          <div class="alert alert-danger">
+                              <td th:text="${error}"></td>
+                          </div>
+                      </div>
+                  <div class="form-group" style="margin-top: 2rem;">
+                    <label for="userNameText">Average Grade</label>
+                    <input type="text" class="form-control" id="userNameText" th:field="*{courseId}" aria-describedby="userNameHelp" placeholder="Course ID">
+                </div>
+    
+                <button type="submit" class="btn btn-outline-dark" style="color: #F7F7F5; margin-top: 1rem;">Show Statistics</button>
+                <br>
+                <br>
+                <br>
+              </form>
+              <form style="text-align: center; width: 50%;" th:action="@{/computeStatistics/{userName}/Statistics/{courseId}(userName=${instructor.userName},courseId=${instructor.courseId})}" method="post" th:object="${instructor}" >
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label for="userNameText">Other Statistics</label>
+                    <input type="text" class="form-control" id="userNameText" th:field="*{courseId}" aria-describedby="userNameHelp" placeholder="Course ID">
+                </div>
+    
+                <button type="submit" class="btn btn-outline-dark" style="color: #F7F7F5; margin-top: 1rem;">Show Statistics</button>
+                <br>
+                <br>
+                <br>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--Bootstrap Javascript-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

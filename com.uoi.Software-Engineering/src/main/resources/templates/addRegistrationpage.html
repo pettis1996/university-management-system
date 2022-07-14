@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" >Registration  Module</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<!-- Create HTML registration form -->
+<div class="container">
+    <div class="row">
+
+        <!-- success message -->
+        <div th:if="${param.success}">
+            <div class="alert alert-info">You've successfully registered to this course!</div>
+        </div>
+
+        <h1>Registration</h1>
+        <form th:action="@{/addRegistration}" method="post" th:object="${registration}">
+            <div th:each="error : ${errors}">
+                <div class="alert alert-info">
+                    <td th:text="${error}"></td>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="registrationid"> Id </label>
+                <input id="registrationId" class="form-control" th:field="*{registrationId}"
+                       required autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('registrationId')}" th:errors="*{registrationId}">
+                        </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="regAm"> Am </label>
+                <input id="regAm" class="form-control" th:field="*{regAm}"
+                       required autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('regAm')}" th:errors="*{regAm}">
+                        </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="courseId"> CourseId </label>
+                <input id="courseId" class="form-control" th:field="*{courseId}"
+                       required autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('courseId')}" th:errors="*{courseId}">
+                        </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="courseId"> StudentName </label>
+                <input id="studentname" class="form-control" th:field="*{studentName}"
+                       required autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('courseId')}" th:errors="*{studentName}">
+                        </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="email"> Email </label> <input
+                    id="email" class="form-control" th:field="*{email}" required
+                    autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                        </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="yearOfStudies"> YearOfStudies </label> <input
+                    id="yearOfStudies" class="form-control" th:field="*{yearOfStudies}" required
+                    autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('yearOfStudies')}" th:errors="*{yearOfStudies}">
+                    </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="semester"> Semester </label> <input
+                    id="semester" class="form-control" th:field="*{semester}" required
+                    autofocus="autofocus" />
+                <span th:if="${#fields.hasErrors('semester')}" th:errors="*{semester}">
+
+                    </span>
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Register</button>
+                <span> <a href="/" th:href="@{/myregistrations}">Go back to my registrations</a></span>
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
